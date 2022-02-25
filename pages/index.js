@@ -1,10 +1,27 @@
-import { Box, Heading } from '@chakra-ui/react';
-import { Profile } from '../components';
+import Head from 'next/head';
+import { Box } from '@chakra-ui/react';
+import { Profile, ListProjects, ListArticles } from '../components';
 
-const Home = () => {
+export const getServerSideProps = async () => {
+  const api = `${process.env.NEXT_PUBLIC_API_URL}${'/api/profile'}`;
+  const res = await fetch(api);
+  const profile = await res.json();
+
+  return {
+    props: { profile: profile.data },
+  };
+};
+
+const Home = ({ profile }) => {
   return (
-    <Box mt={5}>
-      <Profile />
+    <Box>
+      <Head>
+        <title>Dicky Muhamad R</title>
+      </Head>
+
+      <Profile profile={profile} />
+      <ListProjects />
+      <ListArticles />
     </Box>
   );
 };

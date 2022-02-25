@@ -1,3 +1,4 @@
+import NextLink from 'next/link';
 import {
   Box,
   Flex,
@@ -34,7 +35,7 @@ const Navbar = () => {
       as={'header'}
       position={'sticky'}
       top={0}
-      zIndex={1}
+      zIndex={3}
       w={{ base: '100%', md: 'container.md' }}
       bg={'customBg'}
       borderBottom={'1px solid'}
@@ -51,18 +52,22 @@ const Navbar = () => {
         />
 
         <HStack>
-          <Link href="/">
-            <Text fontSize={20} fontWeight="bold" color={'customBlue'}>
-              Dickymr.
-            </Text>
-          </Link>
+          <NextLink href="/" passHref>
+            <Link>
+              <Text fontSize={20} fontWeight="bold" color={'customBlue'}>
+                Dickymr.
+              </Text>
+            </Link>
+          </NextLink>
         </HStack>
 
         <HStack flex={0.9} justify={'flex-end'} as={'nav'} spacing={5} display={{ base: 'none', md: 'flex' }}>
           {Links.map((link, i) => (
-            <Link key={i} fontWeight={'bold'} px={2} py={1} rounded={'md'} href={link.path}>
-              {link.title}
-            </Link>
+            <NextLink key={i} href={link.path} passHref>
+              <Link fontWeight={'bold'} px={2} py={1} rounded={'md'}>
+                {link.title}
+              </Link>
+            </NextLink>
           ))}
         </HStack>
 
@@ -95,9 +100,9 @@ const Navbar = () => {
         <Box pl={4} pb={4} display={{ md: 'none' }}>
           <Stack as={'nav'} spacing={4}>
             {Links.map((link, i) => (
-              <Link key={i} href={link.path}>
-                {link.title}
-              </Link>
+              <NextLink key={i} href={link.path}>
+                <Link>{link.title}</Link>
+              </NextLink>
             ))}
           </Stack>
         </Box>
