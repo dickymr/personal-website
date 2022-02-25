@@ -32,14 +32,7 @@ const Slug = () => {
       <Breadcrumb items={['home', 'articles', article?.title]} />
       {article?.image && (
         <Center>
-          <Image
-            maxW={'100%'}
-            maxH={400}
-            src={`${process.env.NEXT_PUBLIC_API_URL}${article.image.data.url}`}
-            alt={'article'}
-            objectFit="cover"
-            mb={10}
-          />
+          <Image maxW={'100%'} maxH={400} src={article.image.data.url} alt={'article'} objectFit="cover" mb={10} />
         </Center>
       )}
       <Text fontSize="2xl" fontWeight={'bold'} mb={1}>

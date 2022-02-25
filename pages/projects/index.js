@@ -5,6 +5,7 @@ import { Breadcrumb, SearchBox, Skeleton } from '../../components';
 import { useFetch } from '../../utils/hooks';
 
 const Project = ({ data }) => {
+  console.log(data.thumbnail);
   return (
     <NextLink href={`projects/${data.slug}`}>
       <Box
@@ -16,7 +17,7 @@ const Project = ({ data }) => {
         mb={10}
         cursor={'pointer'}>
         <Flex h={200} justify={'center'} mb={7}>
-          <Image src={`${process.env.NEXT_PUBLIC_API_URL}${data.thumbnail.data.url}`} alt={'thumbnail'} objectFit="cover" />
+          <Image src={data.thumbnail.data.url} alt={'thumbnail'} objectFit="cover" />
         </Flex>
         <Text fontSize={'lg'} fontWeight={'bold'}>
           {data.title}

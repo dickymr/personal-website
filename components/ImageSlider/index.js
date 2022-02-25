@@ -48,7 +48,7 @@ const ImageSlider = ({ images }) => {
   return (
     <Slider {...settings}>
       {images.map((image, i) => (
-        <Image mt={5} key={i} h={400} src={`${process.env.NEXT_PUBLIC_API_URL}${image.url}`} alt="images" />
+        <Image mt={5} key={i} h={400} src={image.url} alt="images" />
       ))}
     </Slider>
   );
