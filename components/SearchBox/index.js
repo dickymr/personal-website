@@ -16,7 +16,9 @@ const SearchBox = () => {
   return (
     <Flex>
       <InputGroup mb={10} mr={5}>
-        <InputLeftElement pointerEvents="none" children={<SearchIcon color={'gray.500'} />} />
+        <InputLeftElement pointerEvents="none">
+          <SearchIcon color={'gray.500'} />
+        </InputLeftElement>
         <Input type="tel" placeholder="Search for project title" />
       </InputGroup>
       <Menu closeOnSelect={false}>

@@ -24,7 +24,11 @@ const Markdown = ({ content }) => {
     },
   };
 
-  return <ReactMarkdown components={ChakraUIRenderer(newTheme)} children={content} skipHtml={false} />;
+  return (
+    <ReactMarkdown components={ChakraUIRenderer(newTheme)} skipHtml={false}>
+      {content}
+    </ReactMarkdown>
+  );
 };
 
 export default Markdown;
