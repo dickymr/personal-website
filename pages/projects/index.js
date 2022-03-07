@@ -5,7 +5,6 @@ import { Breadcrumb, SearchBox, Skeleton } from '../../components';
 import { useFetch } from '../../utils/hooks';
 
 const Project = ({ data }) => {
-  console.log(data.thumbnail);
   return (
     <NextLink href={`projects/${data.slug}`}>
       <Box
@@ -27,14 +26,16 @@ const Project = ({ data }) => {
             {ele.name}
           </Badge>
         ))}
-        <Text mt={2}>{data.description}</Text>
+        <Text mt={2} isTruncated>
+          {data.description}
+        </Text>
       </Box>
     </NextLink>
   );
 };
 
 const Projects = () => {
-  const { data: projects, isLoading, isEmpty } = useFetch('/api/projects?populate=*');
+  const { data: projects, isLoading, isEmpty } = useFetch('/api/projects?populate=*&sort[0]=date%3Adesc');
 
   return (
     <Box>

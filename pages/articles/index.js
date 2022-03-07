@@ -22,7 +22,7 @@ const Article = ({ data }) => {
 };
 
 const Articles = () => {
-  const { data: articles, isLoading, isEmpty } = useFetch('/api/articles?populate=*');
+  const { data: articles, isLoading, isEmpty } = useFetch('/api/articles?populate=*&sort[0]=date%3Adesc');
 
   return (
     <Box>

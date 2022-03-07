@@ -11,14 +11,14 @@ const Project = ({ data }) => {
         <Text fontSize={'xl'} fontWeight={'bold'} color="customBlue" mb={1}>
           {data.title}
         </Text>
-        <Text>{data.description}</Text>
+        <Text isTruncated>{data.description}</Text>
       </Box>
     </NextLink>
   );
 };
 
 const ListProjects = () => {
-  const { data: projects, isLoading, isEmpty } = useFetch('/api/projects');
+  const { data: projects, isLoading, isEmpty } = useFetch('/api/projects?sort[0]=date%3Adesc');
 
   return (
     <Box mt={20}>

@@ -76,6 +76,14 @@ const Slug = () => {
         </Flex>
       )}
 
+      {project.deployments.data.length > 0 && (
+        <Flex mb={2}>
+          <Text w={125}>Deployment</Text>
+          <Text w={25}>:</Text>
+          <Text textTransform={'capitalize'}>{project.deployments.data.map((ele) => ele.name).join(', ')}</Text>
+        </Flex>
+      )}
+
       {(project.fe_github || project.be_github) && (
         <Flex mb={10}>
           <Box w={125}>Repository</Box>
@@ -94,11 +102,13 @@ const Slug = () => {
         </Flex>
       )}
 
-      <Link href={project.preview_url} isExternal>
-        <Button rightIcon={<ExternalLinkIcon />} variant={'link'}>
-          <Text fontSize={'lg'}>Preview</Text>
-        </Button>
-      </Link>
+      {project.preview_url && (
+        <Link href={project.preview_url} isExternal>
+          <Button rightIcon={<ExternalLinkIcon />} variant={'link'}>
+            <Text fontSize={'lg'}>Preview</Text>
+          </Button>
+        </Link>
+      )}
     </Box>
   );
 };

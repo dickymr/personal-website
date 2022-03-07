@@ -18,7 +18,6 @@ const Home = ({ profile }) => {
       <Head>
         <title>Dicky Muhamad R</title>
       </Head>
-
       <Profile profile={profile} />
       <ListProjects />
       <ListArticles />

@@ -43,7 +43,7 @@ const Slug = () => {
         <Text as={'span'} mx={2}>
           •
         </Text>
-        {article.views} Views
+        {article.view} Views
         <Text as={'span'} mx={2}>
           •
         </Text>

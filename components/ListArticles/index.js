@@ -11,14 +11,14 @@ const Article = ({ data }) => {
         <Text fontSize={'xl'} fontWeight={'bold'} color="customBlue" mb={1}>
           {data.title}
         </Text>
-        <Text>{data.description}</Text>
+        <Text isTruncated>{data.description}</Text>
       </Box>
     </NextLink>
   );
 };
 
 const ListArticles = () => {
-  const { data: articles, isLoading, isEmpty } = useFetch('/api/articles');
+  const { data: articles, isLoading, isEmpty } = useFetch('/api/articles?sort[0]=date%3Adesc');
 
   return (
     <Box mt={20}>
