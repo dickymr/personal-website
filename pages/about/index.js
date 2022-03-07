@@ -27,7 +27,7 @@ const About = ({ profile }) => {
           </Text>
           <Text>
             {profile?.title} at{' '}
-            <Link href={profile.company_url} isExternal>
+            <Link href={profile?.company_url} isExternal>
               {profile?.company}
             </Link>
           </Text>
