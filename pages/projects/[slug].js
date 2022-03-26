@@ -1,10 +1,10 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 import { Badge, Box, Text, Flex, Button, Link, Spinner } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { useFetch } from '../../utils/hooks';
 import { Breadcrumb, ImageSlider } from '../../components';
+import { NextSeo } from 'next-seo';
 
 const Slug = () => {
   const router = useRouter();
@@ -26,10 +26,7 @@ const Slug = () => {
 
   return (
     <Box>
-      <Head>
-        <title>{project.title} - Dicky Muhamad R</title>
-      </Head>
-
+      <NextSeo title={`${project.title} | Dicky Muhamad R`} description={project.description} />
       <Breadcrumb items={['home', 'projects', project.title]} />
       <ImageSlider images={project.images.data} />
       <Flex mt={10}>

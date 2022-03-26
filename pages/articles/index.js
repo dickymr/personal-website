@@ -1,5 +1,5 @@
-import Head from 'next/head';
 import NextLink from 'next/link';
+import { NextSeo } from 'next-seo';
 import { format } from 'date-fns';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { Breadcrumb, SearchBox, Skeleton } from '../../components';
@@ -26,10 +26,7 @@ const Articles = () => {
 
   return (
     <Box>
-      <Head>
-        <title>Articles - Dicky Muhamad R</title>
-      </Head>
-
+      <NextSeo title="Articles | Dicky Muhamad R" description="Posts related to some of the latest technologies" />
       <Breadcrumb items={['home', 'articles']} />
       <Text fontSize="2xl" fontWeight={'bold'} mb={2}>
         Articles

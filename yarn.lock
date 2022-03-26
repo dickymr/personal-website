@@ -2509,6 +2509,11 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
+next-seo@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.2.0.tgz#d847fadc637b4b2778d46822357a3682bbdf3221"
+  integrity sha512-IJNKzYH4ARKHxN6YTN7AYj3CEpZLpL/o6FlDZqWJ/HaOnpjpvLHpQlI57be/N92iafmYwYE+jOU0SQ6T9DIo/Q==
+
 next@12.0.10:
   version "12.0.10"
   resolved "https://registry.yarnpkg.com/next/-/next-12.0.10.tgz#fcc4584177418bd777ce157f3165b7ba5e7708f7"
@@ -2724,11 +2729,6 @@ punycode@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
-
-querystring@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.1.tgz#40d77615bb09d16902a85c3e38aa8b5ed761c2dd"
-  integrity sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==
 
 queue-microtask@^1.2.2:
   version "1.2.3"

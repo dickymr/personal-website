@@ -1,5 +1,5 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import { format } from 'date-fns';
 import { Box, Center, Image, Text, Spinner } from '@chakra-ui/react';
 import { useFetch } from '../../utils/hooks';
@@ -25,10 +25,7 @@ const Slug = () => {
 
   return (
     <Box>
-      <Head>
-        <title>{article?.title} - Dicky Muhamad R</title>
-      </Head>
-
+      <NextSeo title={`${article?.title} | Dicky Muhamad R`} description={article?.description} />
       <Breadcrumb items={['home', 'articles', article?.title]} />
       {article?.image && (
         <Center>

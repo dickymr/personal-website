@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { Box } from '@chakra-ui/react';
 import { Profile, ListProjects, ListArticles } from '../components';
 
@@ -15,9 +14,6 @@ export const getServerSideProps = async () => {
 const Home = ({ profile }) => {
   return (
     <Box>
-      <Head>
-        <title>Dicky Muhamad R</title>
-      </Head>
       <Profile profile={profile} />
       <ListProjects />
       <ListArticles />

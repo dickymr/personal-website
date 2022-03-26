@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { Avatar, Box, Flex, Link, Text } from '@chakra-ui/react';
 import { Breadcrumb, Markdown } from '../../components';
 
@@ -15,9 +15,7 @@ export const getServerSideProps = async () => {
 const About = ({ profile }) => {
   return (
     <Box>
-      <Head>
-        <title>About - Dicky Muhamad R</title>
-      </Head>
+      <NextSeo title="About | Dicky Muhamad R" />
       <Breadcrumb items={['home', 'about']} />
       <Flex my={10} direction={{ base: 'column', md: 'row' }} align="center">
         <Avatar size="xl" name={profile?.name} src={profile?.photo?.data?.url} mr={5} />
