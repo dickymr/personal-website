@@ -8,7 +8,7 @@ const useFetch = (endpoint) => {
     data: data?.data,
     isLoading: !error && !data,
     isError: error,
-    isEmpty: data?.data.length === 0,
+    isEmpty: data?.data?.length === 0,
   };
 };
 
