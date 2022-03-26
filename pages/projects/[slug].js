@@ -59,7 +59,7 @@ const Slug = () => {
 
       {project.fe_techs.data.length > 0 && (
         <Flex mb={2}>
-          <Text w={125}>Frontend Tech</Text>
+          <Text w={{ sm: 149, md: 125 }}>Frontend Tech</Text>
           <Text w={25}>:</Text>
           <Text textTransform={'capitalize'}>{project.fe_techs.data.map((ele) => ele.name).join(', ')}</Text>
         </Flex>
