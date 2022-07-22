@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import { Box, Center, Image, Text, Spinner } from '@chakra-ui/react';
 import { useFetch } from '../../utils/hooks';
 import { Breadcrumb, Markdown } from '../../components';
+import { capitalizeSlug } from '../../utils';
 
 const Slug = () => {
   const router = useRouter();
@@ -15,6 +16,7 @@ const Slug = () => {
     if (isLoading) {
       return (
         <Box>
+          {slug && <NextSeo title={`${capitalizeSlug(slug)} | Dicky Muhamad R`} />}
           <Breadcrumb items={['home', 'articles', '...']} />
           <Spinner mt={2} />
         </Box>

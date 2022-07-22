@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import '../assets/css/index.css';
 import Script from 'next/script';
+import { useRouter } from 'next/router';
 import { ChakraProvider } from '@chakra-ui/react';
 import Layout from '../layout';
 import theme from '../theme';
@@ -8,15 +10,26 @@ import { DefaultSeo } from 'next-seo';
 function MyApp(props) {
   const { Component, pageProps } = props;
 
+  const router = useRouter();
+
+  const handleRouteChange = (url) => {
+    window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+      page_path: url,
+    });
+  };
+
+  useEffect(() => {
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <ChakraProvider theme={theme}>
-      <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-      />
+      <Script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
       <Script
         id="analytics"
-        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];

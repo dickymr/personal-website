@@ -39,7 +39,7 @@ const Projects = () => {
 
   return (
     <Box>
-      <NextSeo title="Projects | Dicky Muhamad R" description="My open source projects developed and available on Github" />
+      <NextSeo title="Projects | Dicky Muhamad R" description="Here are a few projects I've worked on recently" />
       <Breadcrumb items={['home', 'projects']} />
       <Text fontSize="2xl" fontWeight={'bold'} mb={2}>
         Projects

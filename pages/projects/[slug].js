@@ -5,6 +5,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { useFetch } from '../../utils/hooks';
 import { Breadcrumb, ImageSlider } from '../../components';
 import { NextSeo } from 'next-seo';
+import { capitalizeSlug } from '../../utils';
 
 const Slug = () => {
   const router = useRouter();
@@ -16,6 +17,7 @@ const Slug = () => {
     if (isLoading) {
       return (
         <Box>
+          {slug && <NextSeo title={`${capitalizeSlug(slug)} | Dicky Muhamad R`} />}
           <Breadcrumb items={['home', 'projects', '...']} />
           <Spinner mt={2} />
         </Box>
