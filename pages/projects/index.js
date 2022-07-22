@@ -44,7 +44,7 @@ const Projects = () => {
       <Text fontSize="2xl" fontWeight={'bold'} mb={2}>
         Projects
       </Text>
-      <Text mb={10}>Open source projects developed and available on Github</Text>
+      <Text mb={10}>Here are a few projects I've worked on recently</Text>
       <SearchBox type={'project'} />
       <Flex justify={'space-between'} flexWrap={'wrap'}>
         {isEmpty ? (
