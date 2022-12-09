@@ -18,7 +18,7 @@ const About = ({ profile }) => {
       <NextSeo title="About | Dicky Muhamad R" />
       <Breadcrumb items={['home', 'about']} />
       <Flex my={10} direction={{ base: 'column', md: 'row' }} align="center">
-        <Avatar size="xl" name={profile?.name} src={profile?.photo?.data?.url} mr={5} />
+        <Avatar size="xl" name={profile?.name} src={profile?.avatar?.url} mr={5} />
         <Flex direction={'column'} justify="center" align={{ base: 'center', md: 'flex-start' }}>
           <Text fontSize={'2xl'} fontWeight={'bold'} mt={{ base: 3, md: 0 }}>
             {profile?.name}

@@ -18,7 +18,7 @@ const Article = ({ data }) => {
 };
 
 const ListArticles = () => {
-  const { data: articles, isLoading, isEmpty } = useFetch('/api/articles?sort[0]=date%3Adesc');
+  const { data: articles, isLoading, isEmpty } = useFetch('/api/articles/?sort[0]=date%3Adesc');
 
   return (
     <Box mt={20}>
@@ -42,7 +42,7 @@ const ListArticles = () => {
         ) : isLoading ? (
           <Skeleton type={'list-article'} />
         ) : (
-          articles.map((ele) => <Article key={ele.id} data={ele} />)
+          articles?.map((ele) => <Article key={ele.id} data={ele} />)
         )}
       </Flex>
       {/* <Flex justify={'center'}>
