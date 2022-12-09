@@ -16,12 +16,12 @@ const Project = ({ data }) => {
         mb={10}
         cursor={'pointer'}>
         <Flex h={200} justify={'center'} mb={7}>
-          <Image src={data.thumbnail.data.url} alt={'thumbnail'} objectFit="cover" />
+          <Image src={data.thumbnail.url} alt={'thumbnail'} objectFit="cover" />
         </Flex>
         <Text fontSize={'lg'} fontWeight={'bold'}>
           {data.title}
         </Text>
-        {data.tags.data.map((ele, i) => (
+        {data.tags.map((ele, i) => (
           <Badge key={i} colorScheme="green" fontSize={'0.7rem'} mr={1}>
             {ele.name}
           </Badge>

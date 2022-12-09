@@ -30,7 +30,7 @@ const Slug = () => {
     <Box>
       <NextSeo title={`${project.title} | Dicky Muhamad R`} description={project.description} />
       <Breadcrumb items={['home', 'projects', project.title]} />
-      <ImageSlider images={project.images.data} />
+      <ImageSlider images={project.images} />
       <Flex mt={10}>
         <Text fontSize="2xl" fontWeight={'bold'} mb={2} mr={3}>
           {project.title}
@@ -38,7 +38,7 @@ const Slug = () => {
       </Flex>
 
       <Text fontSize={'sm'} mb={7}>
-        {project.tags.data.map((ele, i) => (
+        {project.tags.map((ele, i) => (
           <Badge key={i} colorScheme="green" fontSize={'0.7rem'} mr={1}>
             {ele.name}
           </Badge>
@@ -55,31 +55,31 @@ const Slug = () => {
         <Flex mb={2}>
           <Text w={125}>Languages</Text>
           <Text w={25}>:</Text>
-          <Text textTransform={'capitalize'}>{project.languages.data.map((ele) => ele.name).join(', ')}</Text>
+          <Text textTransform={'capitalize'}>{project.languages.map((ele) => ele.name).join(', ')}</Text>
         </Flex>
       )}
 
-      {project.fe_techs.data.length > 0 && (
+      {project.fe_techs.length > 0 && (
         <Flex mb={2}>
           <Text w={{ sm: 149, md: 125 }}>Frontend Tech</Text>
           <Text w={25}>:</Text>
-          <Text textTransform={'capitalize'}>{project.fe_techs.data.map((ele) => ele.name).join(', ')}</Text>
+          <Text textTransform={'capitalize'}>{project.fe_techs.map((ele) => ele.name).join(', ')}</Text>
         </Flex>
       )}
 
-      {project.be_techs.data.length > 0 && (
+      {project.be_techs.length > 0 && (
         <Flex mb={2}>
           <Text w={125}>Backend Tech</Text>
           <Text w={25}>:</Text>
-          <Text textTransform={'capitalize'}>{project.be_techs.data.map((ele) => ele.name).join(', ')}</Text>
+          <Text textTransform={'capitalize'}>{project.be_techs.map((ele) => ele.name).join(', ')}</Text>
         </Flex>
       )}
 
-      {project.deployments.data.length > 0 && (
+      {project.deployments.length > 0 && (
         <Flex mb={2}>
           <Text w={125}>Deployment</Text>
           <Text w={25}>:</Text>
-          <Text textTransform={'capitalize'}>{project.deployments.data.map((ele) => ele.name).join(', ')}</Text>
+          <Text textTransform={'capitalize'}>{project.deployments.map((ele) => ele.name).join(', ')}</Text>
         </Flex>
       )}
 
