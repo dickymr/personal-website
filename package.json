@@ -2,7 +2,7 @@
   "name": "personal-website",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 2085",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
