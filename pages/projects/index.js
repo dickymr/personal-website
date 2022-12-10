@@ -1,6 +1,7 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { NextSeo } from 'next-seo';
-import { Badge, Box, Flex, Image, Text } from '@chakra-ui/react';
+import { Badge, Box, Flex, Text } from '@chakra-ui/react';
 import { Breadcrumb, SearchBox, Skeleton } from '../../components';
 import { useFetch } from '../../utils/hooks';
 
@@ -15,8 +16,8 @@ const Project = ({ data }) => {
       mb={10}
       cursor={'pointer'}>
       <Link href={`projects/${data.slug}`} passHref>
-        <Flex h={200} justify={'center'} mb={7}>
-          <Image src={data.thumbnail.url} alt={'thumbnail'} objectFit="cover" />
+        <Flex position={'relative'} h={200} mb={7}>
+          <Image style={{ objectFit: 'contain' }} sizes={10} src={data.thumbnail.url} alt={'thumbnail'} fill priority />
         </Flex>
         <Text fontSize={'lg'} fontWeight={'bold'}>
           {data.title}

@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Image } from '@chakra-ui/react';
+import Image from 'next/image';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import Slider from 'react-slick';
 import '../../node_modules/slick-carousel/slick/slick.css';
 import '../../node_modules/slick-carousel/slick/slick-theme.css';
+import { Box } from '@chakra-ui/react';
 
 const ImageSlider = ({ images }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -48,7 +49,9 @@ const ImageSlider = ({ images }) => {
   return (
     <Slider {...settings}>
       {images.map((image, i) => (
-        <Image mt={5} key={i} h={400} src={image.url} alt="images" />
+        <Box key={i} position={'relative'} h={{ base: '15rem', md: '25rem' }} mt={5}>
+          <Image sizes={10} src={image.url} alt="images" fill priority />
+        </Box>
       ))}
     </Slider>
   );
