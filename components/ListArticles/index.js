@@ -18,7 +18,11 @@ const Article = ({ data }) => {
 };
 
 const ListArticles = () => {
-  const { data: articles, isLoading, isEmpty } = useFetch('/api/articles/?sort[0]=date%3Adesc');
+  const {
+    data: articles,
+    isLoading,
+    isEmpty,
+  } = useFetch('/api/articles?pagination[page]=1&pagination[pageSize]=5&sort[0]=date%3Adesc');
 
   return (
     <Box mt={20}>

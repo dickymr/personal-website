@@ -18,7 +18,11 @@ const Project = ({ data }) => {
 };
 
 const ListProjects = () => {
-  const { data: projects, isLoading, isEmpty } = useFetch('/api/projects?sort[0]=date%3Adesc');
+  const {
+    data: projects,
+    isLoading,
+    isEmpty,
+  } = useFetch('/api/projects?pagination[page]=1&pagination[pageSize]=5&sort[0]=date%3Adesc');
 
   return (
     <Box mt={20}>
