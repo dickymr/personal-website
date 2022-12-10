@@ -6,15 +6,15 @@ import { useFetch } from '../../utils/hooks';
 
 const Project = ({ data }) => {
   return (
-    <Link href={`projects/${data.slug}`} passHref>
-      <Box
-        w={{ base: '100%', md: '48%' }}
-        p={5}
-        border={'1px solid'}
-        borderColor={'customBorder'}
-        borderRadius={10}
-        mb={10}
-        cursor={'pointer'}>
+    <Box
+      w={{ base: '100%', md: '48%' }}
+      p={5}
+      border={'1px solid'}
+      borderColor={'customBorder'}
+      borderRadius={10}
+      mb={10}
+      cursor={'pointer'}>
+      <Link href={`projects/${data.slug}`} passHref>
         <Flex h={200} justify={'center'} mb={7}>
           <Image src={data.thumbnail.url} alt={'thumbnail'} objectFit="cover" />
         </Flex>
@@ -29,8 +29,8 @@ const Project = ({ data }) => {
         <Text mt={2} isTruncated>
           {data.description}
         </Text>
-      </Box>
-    </Link>
+      </Link>
+    </Box>
   );
 };
 

@@ -7,8 +7,8 @@ import { useFetch } from '../../utils/hooks';
 
 const Article = ({ data }) => {
   return (
-    <Link href={`articles/${data.slug}`} passHref>
-      <Box w={'100%'} p={5} border={'1px solid'} borderColor={'customBorder'} borderRadius={10} mb={5} cursor={'pointer'}>
+    <Box w={'100%'} p={5} border={'1px solid'} borderColor={'customBorder'} borderRadius={10} mb={5} cursor={'pointer'}>
+      <Link href={`articles/${data.slug}`} passHref>
         <Text fontSize={'xs'} mb={2}>
           {format(new Date(data.date), 'MMMM d, yyyy')}
         </Text>
@@ -16,8 +16,8 @@ const Article = ({ data }) => {
           {data.title}
         </Text>
         <Text>{data.description}</Text>
-      </Box>
-    </Link>
+      </Link>
+    </Box>
   );
 };
 
