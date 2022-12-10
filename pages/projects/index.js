@@ -1,4 +1,4 @@
-import NextLink from 'next/link';
+import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import { Badge, Box, Flex, Image, Text } from '@chakra-ui/react';
 import { Breadcrumb, SearchBox, Skeleton } from '../../components';
@@ -6,7 +6,7 @@ import { useFetch } from '../../utils/hooks';
 
 const Project = ({ data }) => {
   return (
-    <NextLink href={`projects/${data.slug}`}>
+    <Link href={`projects/${data.slug}`} passHref>
       <Box
         w={{ base: '100%', md: '48%' }}
         p={5}
@@ -30,7 +30,7 @@ const Project = ({ data }) => {
           {data.description}
         </Text>
       </Box>
-    </NextLink>
+    </Link>
   );
 };
 

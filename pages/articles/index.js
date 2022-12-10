@@ -1,4 +1,4 @@
-import NextLink from 'next/link';
+import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import { format } from 'date-fns';
 import { Box, Flex, Text } from '@chakra-ui/react';
@@ -7,7 +7,7 @@ import { useFetch } from '../../utils/hooks';
 
 const Article = ({ data }) => {
   return (
-    <NextLink href={`articles/${data.slug}`}>
+    <Link href={`articles/${data.slug}`} passHref>
       <Box w={'100%'} p={5} border={'1px solid'} borderColor={'customBorder'} borderRadius={10} mb={5} cursor={'pointer'}>
         <Text fontSize={'xs'} mb={2}>
           {format(new Date(data.date), 'MMMM d, yyyy')}
@@ -17,7 +17,7 @@ const Article = ({ data }) => {
         </Text>
         <Text>{data.description}</Text>
       </Box>
-    </NextLink>
+    </Link>
   );
 };
 

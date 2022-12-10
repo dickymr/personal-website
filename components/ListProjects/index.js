@@ -1,19 +1,19 @@
-import NextLink from 'next/link';
-import { Box, Flex, Text, Link } from '@chakra-ui/react';
+import Link from 'next/link';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import { useFetch } from '../../utils/hooks';
 import { Skeleton } from '../../components';
 
 const Project = ({ data }) => {
   return (
-    <NextLink href={`/projects/${data.slug}`}>
+    <Link href={`/projects/${data.slug}`} passHref>
       <Box pl={2} mb={5} _hover={{ cursor: 'pointer' }}>
         <Text fontSize={'xl'} fontWeight={'bold'} color="customBlue" mb={1}>
           {data.title}
         </Text>
         <Text isTruncated>{data.description}</Text>
       </Box>
-    </NextLink>
+    </Link>
   );
 };
 
@@ -30,13 +30,11 @@ const ListProjects = () => {
         <Text fontSize="2xl" fontWeight={'bold'}>
           Projects
         </Text>
-        <NextLink href="/projects" passHref>
-          <Link>
-            <Text>
-              View all projects <ArrowForwardIcon />
-            </Text>
-          </Link>
-        </NextLink>
+        <Link href="/projects" passHref>
+          <Text>
+            View all projects <ArrowForwardIcon />
+          </Text>
+        </Link>
       </Flex>
       <Flex direction={'column'} mb={2}>
         {isEmpty ? (
