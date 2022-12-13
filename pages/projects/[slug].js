@@ -61,7 +61,7 @@ const Slug = () => {
 
       {project.fe_techs.length > 0 && (
         <Flex mb={2}>
-          <Text w={{ sm: 149, md: 125 }}>Frontend Tech</Text>
+          <Text w={{ sm: 149, md: 125 }}>FE Tech</Text>
           <Text w={25}>:</Text>
           <Text textTransform={'capitalize'}>{project.fe_techs.map((ele) => ele.name).join(', ')}</Text>
         </Flex>
@@ -69,7 +69,7 @@ const Slug = () => {
 
       {project.be_techs.length > 0 && (
         <Flex mb={2}>
-          <Text w={125}>Backend Tech</Text>
+          <Text w={125}>BE Tech</Text>
           <Text w={25}>:</Text>
           <Text textTransform={'capitalize'}>{project.be_techs.map((ele) => ele.name).join(', ')}</Text>
         </Flex>
