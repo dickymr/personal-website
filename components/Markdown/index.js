@@ -1,34 +1,33 @@
-// import { Text } from '@chakra-ui/react';
-// import ReactMarkdown from 'react-markdown';
-// import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
+import { Text } from '@chakra-ui/react';
+import ReactMarkdown from 'react-markdown';
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 
 const Markdown = ({ content }) => {
-  // const newTheme = {
-  //   h1: (props) => {
-  //     const { children } = props;
+  const newTheme = {
+    h1: (props) => {
+      const { children } = props;
 
-  //     return (
-  //       <Text fontSize="xl" fontWeight={'bold'} mb={1}>
-  //         {children}
-  //       </Text>
-  //     );
-  //   },
-  //   p: (props) => {
-  //     const { children } = props;
+      return (
+        <Text fontSize="xl" fontWeight={'bold'} mb={1}>
+          {children}
+        </Text>
+      );
+    },
+    p: (props) => {
+      const { children } = props;
 
-  //     return (
-  //       <Text mb={5} fontSize={'md'}>
-  //         {children}
-  //       </Text>
-  //     );
-  //   },
-  // };
+      return (
+        <Text mb={5} fontSize={'md'}>
+          {children}
+        </Text>
+      );
+    },
+  };
 
   return (
-    <div dangerouslySetInnerHTML={{ __html: content }}></div>
-    // <ReactMarkdown components={ChakraUIRenderer(newTheme)} skipHtml={false}>
-    //   {content}
-    // </ReactMarkdown>
+    <ReactMarkdown components={ChakraUIRenderer(newTheme)} skipHtml={false}>
+      {content}
+    </ReactMarkdown>
   );
 };
 
