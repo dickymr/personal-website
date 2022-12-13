@@ -1,6 +1,11 @@
+import axios from 'axios';
 import ReactGA from 'react-ga4';
 
-export const fetcher = (...args) => fetch(...args).then((res) => res.json());
+export const fetcher = async (endpoint) => {
+  axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
+  const { data } = await axios.get(endpoint);
+  return data;
+};
 
 export const capitalizeSlug = (slug) => {
   const title = slug?.replace(/-/g, ' ').replace(/[^\w-]+/g, ' ');

@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-import { useFetch } from '../../utils/hooks';
+import { useQuery } from '@tanstack/react-query';
 import { Skeleton } from '../../components';
+import { fetcher } from '../../utils';
 
 const Article = ({ data }) => {
   return (
@@ -18,11 +19,26 @@ const Article = ({ data }) => {
 };
 
 const ListArticles = () => {
-  const {
-    data: articles,
-    isLoading,
-    isEmpty,
-  } = useFetch('/api/articles?pagination[page]=1&pagination[pageSize]=5&sort[0]=date%3Adesc');
+  const { data: articles, isLoading } = useQuery({
+    queryKey: ['list_articles'],
+    queryFn: async () => fetcher('/api/articles?pagination[page]=1&pagination[pageSize]=5&sort[0]=date%3Adesc'),
+  });
+
+  const renderContent = () => {
+    if (isLoading) {
+      return <Skeleton type={'list-article'} />;
+    }
+
+    if (articles?.data?.length === 0) {
+      return (
+        <Text fontSize={'xs'} align={'center'}>
+          No articles yet
+        </Text>
+      );
+    }
+
+    return articles?.data?.map((ele) => <Article key={ele.id} data={ele} />);
+  };
 
   return (
     <Box mt={20}>
@@ -37,23 +53,8 @@ const ListArticles = () => {
         </Link>
       </Flex>
       <Flex direction={'column'} mb={2}>
-        {isEmpty ? (
-          <Text fontSize={'xs'} align={'center'}>
-            No articles yet
-          </Text>
-        ) : isLoading ? (
-          <Skeleton type={'list-article'} />
-        ) : (
-          articles?.map((ele) => <Article key={ele.id} data={ele} />)
-        )}
+        {renderContent()}
       </Flex>
-      {/* <Flex justify={'center'}>
-        <Button variant="ghost" fontSize={'sm'}>
-          Show More
-          <br />
-          <ChevronDownIcon fontSize={'2xl'} />
-        </Button>
-      </Flex> */}
     </Box>
   );
 };

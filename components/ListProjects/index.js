@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-import { useFetch } from '../../utils/hooks';
+import { useQuery } from '@tanstack/react-query';
 import { Skeleton } from '../../components';
+import { fetcher } from '../../utils';
 
 const Project = ({ data }) => {
   return (
@@ -18,11 +19,26 @@ const Project = ({ data }) => {
 };
 
 const ListProjects = () => {
-  const {
-    data: projects,
-    isLoading,
-    isEmpty,
-  } = useFetch('/api/projects?pagination[page]=1&pagination[pageSize]=5&sort[0]=date%3Adesc');
+  const { data: projects, isLoading } = useQuery({
+    queryKey: ['list_projects'],
+    queryFn: async () => fetcher('/api/projects?pagination[page]=1&pagination[pageSize]=5&sort[0]=date%3Adesc'),
+  });
+
+  const renderContent = () => {
+    if (isLoading) {
+      return <Skeleton type={'list-project'} />;
+    }
+
+    if (projects?.data?.length === 0) {
+      return (
+        <Text fontSize={'xs'} align={'center'}>
+          No projects yet
+        </Text>
+      );
+    }
+
+    return projects?.data?.map((ele) => <Project key={ele.id} data={ele} />);
+  };
 
   return (
     <Box mt={20}>
@@ -37,23 +53,8 @@ const ListProjects = () => {
         </Link>
       </Flex>
       <Flex direction={'column'} mb={2}>
-        {isEmpty ? (
-          <Text fontSize={'xs'} align={'center'}>
-            No projects yet
-          </Text>
-        ) : isLoading ? (
-          <Skeleton type={'list-project'} />
-        ) : (
-          projects?.map((ele) => <Project key={ele.id} data={ele} />)
-        )}
+        {renderContent()}
       </Flex>
-      {/* <Flex justify={'center'}>
-        <Button variant="ghost" fontSize={'sm'}>
-          Show More
-          <br />
-          <ChevronDownIcon fontSize={'2xl'} />
-        </Button>
-      </Flex> */}
     </Box>
   );
 };

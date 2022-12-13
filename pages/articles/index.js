@@ -1,9 +1,12 @@
+import { useEffect } from 'react';
 import Link from 'next/link';
+import { Box, Flex, Spinner, Text } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInView } from 'react-intersection-observer';
 import { format } from 'date-fns';
-import { Box, Flex, Text } from '@chakra-ui/react';
 import { Breadcrumb, SearchBox, Skeleton } from '../../components';
-import { useFetch } from '../../utils/hooks';
+import { fetcher } from '../../utils';
 
 const Article = ({ data }) => {
   return (
@@ -15,14 +18,34 @@ const Article = ({ data }) => {
         <Text fontSize={'lg'} fontWeight={'bold'} mb={1}>
           {data.title}
         </Text>
-        <Text>{data.description}</Text>
+        <Text isTruncated>{data.description}</Text>
       </Link>
     </Box>
   );
 };
 
 const Articles = () => {
-  const { data: articles, isLoading, isEmpty } = useFetch('/api/articles?populate=*&sort[0]=date%3Adesc');
+  const getArticles = (page) => {
+    return fetcher(`/api/articles?populate=*&pagination[page]=${page}&pagination[pageSize]=5&sort[0]=date%3Adesc`);
+  };
+
+  const { ref, inView } = useInView();
+  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    ['list_articles'],
+    ({ pageParam = 1 }) => getArticles(pageParam),
+    {
+      getNextPageParam: (lastPage) => {
+        const { pagination } = lastPage.meta;
+        return pagination.page < pagination.pageCount ? pagination.page + 1 : false;
+      },
+    }
+  );
+
+  const articlePages = data?.pages;
+
+  useEffect(() => {
+    inView && hasNextPage && fetchNextPage();
+  }, [inView]);
 
   return (
     <Box>
@@ -34,14 +57,17 @@ const Articles = () => {
       <Text mb={10}>Posts related to some of the latest technologies</Text>
       <SearchBox type={'article'} />
       <Flex direction={'column'}>
-        {isEmpty ? (
+        {articlePages?.length === 0 ? (
           <Text fontSize={'xs'}>No articles yet</Text>
         ) : isLoading ? (
           <Skeleton type={'card-article'} />
         ) : (
-          articles?.map((ele) => <Article key={ele.id} data={ele} />)
+          articlePages?.map((page) => page.data.map((article) => <Article key={article.id} data={article} />))
         )}
       </Flex>
+      <Box ref={ref} visibility={isFetchingNextPage ? 'visible' : 'hidden'} textAlign="center" mt={3}>
+        <Spinner />
+      </Box>
     </Box>
   );
 };

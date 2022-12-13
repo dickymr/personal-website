@@ -1,9 +1,12 @@
+import { useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Badge, Box, Flex, Spinner, Text } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
-import { Badge, Box, Flex, Text } from '@chakra-ui/react';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInView } from 'react-intersection-observer';
 import { Breadcrumb, SearchBox, Skeleton } from '../../components';
-import { useFetch } from '../../utils/hooks';
+import { fetcher } from '../../utils';
 
 const Project = ({ data }) => {
   return (
@@ -36,7 +39,27 @@ const Project = ({ data }) => {
 };
 
 const Projects = () => {
-  const { data: projects, isLoading, isEmpty } = useFetch('/api/projects?populate=*&sort[0]=date%3Adesc');
+  const getProjects = (page) => {
+    return fetcher(`/api/projects?populate=*&pagination[page]=${page}&pagination[pageSize]=4&sort[0]=date%3Adesc`);
+  };
+
+  const { ref, inView } = useInView();
+  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    ['list_projects'],
+    ({ pageParam = 1 }) => getProjects(pageParam),
+    {
+      getNextPageParam: (lastPage) => {
+        const { pagination } = lastPage.meta;
+        return pagination.page < pagination.pageCount ? pagination.page + 1 : false;
+      },
+    }
+  );
+
+  const projectPages = data?.pages;
+
+  useEffect(() => {
+    inView && hasNextPage && fetchNextPage();
+  }, [inView]);
 
   return (
     <Box>
@@ -48,14 +71,17 @@ const Projects = () => {
       <Text mb={10}>{`Here are a few projects I've worked on recently`}</Text>
       <SearchBox type={'project'} />
       <Flex justify={'space-between'} flexWrap={'wrap'}>
-        {isEmpty ? (
-          <Text fontSize={'xs'}>No projects yet</Text>
+        {projectPages?.length === 0 ? (
+          <Text fontSize={'xs'}>No articles yet</Text>
         ) : isLoading ? (
           <Skeleton type={'card-project'} />
         ) : (
-          projects?.map((ele) => <Project key={ele.id} data={ele} />)
+          projectPages?.map((page) => page.data.map((project) => <Project key={project.id} data={project} />))
         )}
       </Flex>
+      <Box ref={ref} visibility={isFetchingNextPage ? 'visible' : 'hidden'} textAlign="center" mt={3}>
+        <Spinner />
+      </Box>
     </Box>
   );
 };
