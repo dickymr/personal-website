@@ -5,7 +5,7 @@ import { Badge, Box, Flex, Spinner, Text } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
-import { Breadcrumb, SearchBox, Skeleton } from '../../components';
+import { Breadcrumb, Skeleton } from '../../components';
 import { fetcher } from '../../utils';
 
 const Project = ({ data }) => {
@@ -78,7 +78,7 @@ const Projects = () => {
         Projects
       </Text>
       <Text mb={10}>{`Here are a few projects I've worked on recently`}</Text>
-      <SearchBox type={'project'} />
+      {/* <SearchBox type={'project'} /> */}
       <Flex justify={'space-between'} flexWrap={'wrap'}>
         {projectPages?.length === 0 ? (
           <Text fontSize={'xs'}>No articles yet</Text>

@@ -5,7 +5,7 @@ import { NextSeo } from 'next-seo';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 import { format } from 'date-fns';
-import { Breadcrumb, SearchBox, Skeleton } from '../../components';
+import { Breadcrumb, Skeleton } from '../../components';
 import { fetcher } from '../../utils';
 
 const Article = ({ data }) => {
@@ -55,7 +55,7 @@ const Articles = () => {
         Articles
       </Text>
       <Text mb={10}>Posts related to some of the latest technologies</Text>
-      <SearchBox type={'article'} />
+      {/* <SearchBox type={'article'} /> */}
       <Flex direction={'column'}>
         {articlePages?.length === 0 ? (
           <Text fontSize={'xs'}>No articles yet</Text>
