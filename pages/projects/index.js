@@ -21,7 +21,7 @@ const Project = ({ data }) => {
       <Link href={`projects/${data.slug}`} passHref>
         <Flex position={'relative'} h={200} mb={7}>
           <Image
-            style={{ objectFit: 'contain' }}
+            style={{ objectFit: 'cover' }}
             sizes={10}
             src={data.thumbnail.url}
             placeholder="blur"
