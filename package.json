@@ -2,7 +2,7 @@
   "name": "personal-website",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 2085",
+    "dev": "next dev -p 2087",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -28,7 +28,8 @@
     "react-markdown": "^8.0.0",
     "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1",
-    "swr": "^1.2.1"
+    "swr": "^1.2.1",
+    "typewriter-effect": "^2.19.0"
   },
   "devDependencies": {
     "eslint": "8.8.0",

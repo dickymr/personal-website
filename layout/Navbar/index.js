@@ -11,6 +11,7 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
+import Typewriter from 'typewriter-effect';
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 const Links = [
@@ -46,8 +47,14 @@ const Navbar = () => {
 
         <HStack>
           <Link href="/" passHref>
-            <Text fontSize={20} fontWeight="bold" color={'customBlue'} _hover={{ textDecoration: 'underline' }}>
-              Dickymr.
+            <Text as={'div'} fontSize={20} fontWeight="bold" color={'customBlue'} _hover={{ textDecoration: 'underline' }}>
+              <Typewriter
+                options={{
+                  strings: ['Dickymr.'],
+                  autoStart: true,
+                  loop: true,
+                }}
+              />
             </Text>
           </Link>
         </HStack>
