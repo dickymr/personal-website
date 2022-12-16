@@ -47,7 +47,14 @@ const Navbar = () => {
 
         <HStack>
           <Link href="/" passHref>
-            <Text as={'div'} fontSize={20} fontWeight="bold" color={'customBlue'} _hover={{ textDecoration: 'underline' }}>
+            <Text
+              as={'div'}
+              w={24}
+              fontSize={20}
+              fontWeight="bold"
+              color={'customBlue'}
+              ml={2}
+              _hover={{ textDecoration: 'underline' }}>
               <Typewriter
                 options={{
                   strings: ['Dickymr.'],
