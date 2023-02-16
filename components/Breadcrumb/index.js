@@ -1,4 +1,4 @@
-import NextLink from 'next/link';
+import Link from 'next/link';
 import { Breadcrumb as BreadcrumbContainer, BreadcrumbItem, BreadcrumbLink, Text } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 
@@ -8,11 +8,11 @@ const Breadcrumb = ({ items }) => {
       {items.map((ele, i) => (
         <BreadcrumbItem key={i} alignItems="bottom">
           {i + 1 !== items.length ? (
-            <NextLink href={ele === 'home' ? '/' : `/${ele}`} passHref>
-              <BreadcrumbLink fontSize={'sm'} textTransform={'capitalize'}>
+            <Link href={ele === 'home' ? '/' : `/${ele}`} passHref>
+              <BreadcrumbLink as={Text} fontSize={'sm'} textTransform={'capitalize'}>
                 {ele}
               </BreadcrumbLink>
-            </NextLink>
+            </Link>
           ) : (
             <Text fontSize={'sm'} textTransform={'capitalize'} color={'grey'}>
               {ele}

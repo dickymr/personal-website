@@ -1,46 +1,25 @@
 import { useEffect } from 'react';
 import '../assets/css/index.css';
-import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { ChakraProvider } from '@chakra-ui/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Layout from '../layout';
 import theme from '../theme';
 import { DefaultSeo } from 'next-seo';
+import { setAnalytics } from '../utils';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-function MyApp(props) {
-  const { Component, pageProps } = props;
+const queryClient = new QueryClient();
 
+function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
-  const handleRouteChange = (url) => {
-    window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
-      page_path: url,
-    });
-  };
-
   useEffect(() => {
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
+    setAnalytics(router);
+  }, [router]);
 
   return (
     <ChakraProvider theme={theme}>
-      <Script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
-      <Script
-        id="analytics"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
       <DefaultSeo
         title="Personal Website | Dicky Muhamad R"
         description="Frontend Web Developer"
@@ -52,9 +31,12 @@ function MyApp(props) {
           images: [{ url: 'https://res.cloudinary.com/dickymr/image/upload/v1646668175/dickymr_4b59491ed6.jpg' }],
         }}
       />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </QueryClientProvider>
     </ChakraProvider>
   );
 }

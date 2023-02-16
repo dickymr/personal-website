@@ -22,7 +22,7 @@ const Profile = ({ profile }) => {
         </Text>
       </Text>
       <Text mb={4}>{profile?.short_desc}</Text>
-      <Flex w={{ base: '25%', md: '15%' }} justify={'space-between'}>
+      <Flex w={{ base: '40%', md: '15%' }} justify={'space-between'}>
         {contacts.map((ele, i) => (
           <Tooltip key={i} label={ele.name} placement={'top'} hasArrow>
             <Link href={ele.url} isExternal>

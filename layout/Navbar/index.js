@@ -1,23 +1,17 @@
-import NextLink from 'next/link';
+import Link from 'next/link';
 import {
   Box,
   Flex,
-  Link,
   HStack,
   IconButton,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
   Stack,
-  Center,
   Text,
   useDisclosure,
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
+import Typewriter from 'typewriter-effect';
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 const Links = [
@@ -52,22 +46,33 @@ const Navbar = () => {
         />
 
         <HStack>
-          <NextLink href="/" passHref>
-            <Link>
-              <Text fontSize={20} fontWeight="bold" color={'customBlue'}>
-                Dickymr.
-              </Text>
-            </Link>
-          </NextLink>
+          <Link href="/" passHref>
+            <Text
+              as={'div'}
+              w={24}
+              fontSize={20}
+              fontWeight="bold"
+              color={'customBlue'}
+              ml={2}
+              _hover={{ textDecoration: 'underline' }}>
+              <Typewriter
+                options={{
+                  strings: ['Dickymr.'],
+                  autoStart: true,
+                  loop: true,
+                }}
+              />
+            </Text>
+          </Link>
         </HStack>
 
         <HStack flex={0.9} justify={'flex-end'} as={'nav'} spacing={5} display={{ base: 'none', md: 'flex' }}>
           {Links.map((link, i) => (
-            <NextLink key={i} href={link.path} passHref>
-              <Link fontWeight={'bold'} px={2} py={1} rounded={'md'}>
+            <Link key={i} href={link.path} passHref>
+              <Text fontWeight={'bold'} px={2} py={1} rounded={'md'} _hover={{ textDecoration: 'underline' }}>
                 {link.title}
-              </Link>
-            </NextLink>
+              </Text>
+            </Link>
           ))}
         </HStack>
 
@@ -75,23 +80,6 @@ const Navbar = () => {
           <Button bg={useColorModeValue('white', 'gray.800')} mr={{ base: 0, md: 2 }} onClick={toggleColorMode}>
             {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
           </Button>
-
-          <Menu>
-            <MenuButton as={Button} rounded={'full'} variant={'link'} cursor={'pointer'} minW={0}>
-              {/* <Avatar size={'sm'} src={user?.picture} /> */}
-            </MenuButton>
-
-            <MenuList alignItems={'center'}>
-              <br />
-              <Center>{/* <Avatar size={'xl'} src={user?.picture} /> */}</Center>
-              <br />
-              <Center>{/* <p>{user?.email}</p> */}</Center>
-              <br />
-              <MenuDivider />
-              <MenuItem>Account Settings</MenuItem>
-              <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
-            </MenuList>
-          </Menu>
         </Flex>
       </Flex>
 
@@ -100,9 +88,9 @@ const Navbar = () => {
         <Box pl={4} pb={4} display={{ md: 'none' }}>
           <Stack as={'nav'} spacing={4}>
             {Links.map((link, i) => (
-              <NextLink key={i} href={link.path}>
-                <Link>{link.title}</Link>
-              </NextLink>
+              <Link key={i} href={link.path} passHref>
+                <Text>{link.title}</Text>
+              </Link>
             ))}
           </Stack>
         </Box>
