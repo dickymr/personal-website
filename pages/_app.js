@@ -48,7 +48,7 @@ function MyApp(props) {
           type: 'website',
           title: 'Personal Website | Dicky Muhamad R',
           description: 'Frontend Web Developer',
-          url: 'https://dickymr.xyz/',
+          url: 'https://dickymr.com/',
           images: [{ url: 'https://res.cloudinary.com/dickymr/image/upload/v1646668175/dickymr_4b59491ed6.jpg' }],
         }}
       />
