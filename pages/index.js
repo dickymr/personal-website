@@ -1,20 +1,22 @@
 import { Box } from '@chakra-ui/react';
+import { useQuery } from '@tanstack/react-query';
+
 import { Profile, ListProjects, ListArticles } from '../components';
+import { fetcher } from '../utils';
 
-export const getServerSideProps = async () => {
-  const api = `${process.env.NEXT_PUBLIC_API_URL}${'/api/profile/?populate=*'}`;
-  const res = await fetch(api);
-  const profile = await res.json();
+const Home = () => {
+  const { data: profile, isLoading } = useQuery({
+    queryKey: ['my_profile'],
+    queryFn: async () => fetcher('/api/profile/'),
+  });
 
-  return {
-    props: { profile: profile.data },
-  };
-};
+  if (isLoading) {
+    return null;
+  }
 
-const Home = ({ profile }) => {
   return (
     <Box>
-      <Profile profile={profile} />
+      <Profile profile={profile?.data} />
       <ListProjects />
       <ListArticles />
     </Box>
